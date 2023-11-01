@@ -13,13 +13,11 @@ public class SignupPage {
     
     private WebDriver driver;
     public SignupPage(WebDriver driver){this.driver = driver;}
-
     public SignupPage verificaAcessoPaginaSignup() {
         driver.findElement(By.cssSelector("div h2 b")).isDisplayed();
 
         return this;
     }
-
     public SignupPage preencherDadosSignup(
             String password,
             int dia,
@@ -76,7 +74,6 @@ public class SignupPage {
 
         return this;
     }
-
     public ContaCriadaPage clicaNoBotaoSignup(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0, 500);");
