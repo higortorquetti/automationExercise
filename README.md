@@ -15,11 +15,17 @@ Para todos os teste vou usar o site [automation testes](https://automationexerci
 ***
 ### 🧪 Testes:
 - **S1: Login**  
-  **T1:** Login e Logout com usuario valido  
-  **T2:** Login usando email incorreto  
-  **T3:** Criar um novo usuario e exlcui em seguida </br>
-  **T4:** Registrar novo usuario com email já existente
+  **T1:** Login e Logout com usuario valido.  
+  **T2:** Login usando email incorreto.</br>
+  **T3:** Criar um novo usuario e exlcui em seguida. </br>
+  **T4:** Registrar novo usuario com email já existente.
 
 - **S2: Contact Us**  
-  **T1:** Enviar um formluario de contato   
-  
+  **T1:** Enviar um formluario de contato.
+
+- **S3:** Product</br>
+  **T1:** Verifica fluxo de pagina de produtos para pagina de produto detalhado.</br>
+  **T2:** Verifica o se os produtos estão sendo buscados na pagina de produtos.
+
+- **S4:** Home</br>
+  **T1:** Verifica o fluxo de inscrição no site atraés de email.
