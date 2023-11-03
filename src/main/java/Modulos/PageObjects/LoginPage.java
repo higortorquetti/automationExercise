@@ -13,6 +13,8 @@ public class LoginPage {
     protected WebDriver driver;
 
     public LoginPage(WebDriver driver){this.driver = driver;}
+
+                //-- VERIFICAÇÕES DE PAGINA --//
     public LoginPage verificarAcessoLoginPage(){
         driver.findElement(By.cssSelector("div[class=\"signup-form\"] h2")).isDisplayed();
 

@@ -10,6 +10,7 @@ public class ProductDetailPage {
 
     public ProductDetailPage(WebDriver driver){this.driver = driver;}
 
+                    //-- VERIFICAÇÕES DE PAGINA --//
     public ProductDetailPage verificaProdutoDetail(){
         driver.findElement(By.cssSelector("div[class=\"product-details\"]")).isDisplayed();
 

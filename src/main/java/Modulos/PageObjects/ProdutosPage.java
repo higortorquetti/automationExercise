@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 public class ProdutosPage {
     private WebDriver driver;
     public ProdutosPage(WebDriver driver){this.driver = driver;}
+
+                    //-- VERIFICAÇÕES DE PAGINA --//
     public ProdutosPage verificaAcessoProdutosPageAllProducts() {
         WebElement elemento = driver.findElement(By.cssSelector("div > h2[class=\"title text-center\"]"));
         String textoAllProducts = elemento.getText().toUpperCase();
@@ -19,11 +21,15 @@ public class ProdutosPage {
         String textoAllProducts = elemento.getText().toUpperCase();
         return textoAllProducts;
     }
+
+                    //-- INSERÇÃO DE DADOS --//
     public ProdutosPage inseriValorPesquisa(String pesquisa){
         driver.findElement(By.cssSelector("input[id=\"search_product\"]")).sendKeys(pesquisa);
 
         return this;
     }
+
+                    //-- CLICKS EM BOTÕES --//
     public ProductDetailPage clicaBtnViewProduct(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0, 500);");

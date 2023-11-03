@@ -9,6 +9,8 @@ public class ContactUsPage {
 
     private WebDriver driver;
     public ContactUsPage(WebDriver navegador){this.driver = navegador;}
+
+                    //-- VERIFICAÇÕES DE PAGINA --//
     public ContactUsPage verificaPaginaContactUs(){
         driver.findElement(By
                 .cssSelector("div[class=\"col-sm-8\"] div h2[class=\"title text-center\"]")).isDisplayed();
@@ -20,6 +22,9 @@ public class ContactUsPage {
 
         return this;
     }
+
+
+                    //-- INSERÇÃO DE DADOS --//
     public ContactUsPage preencherDadosContacUs(
             String name,
             String email,
@@ -37,6 +42,8 @@ public class ContactUsPage {
         driver.findElement(By.cssSelector("input[type=\"file\"]")).sendKeys(arquivo);
         return this;
     }
+
+                    //-- CLICKS EM BOTÕES --//
     public ContactUsPage clicaNoBotaoSubmit(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0, 500);");
