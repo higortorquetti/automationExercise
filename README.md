@@ -25,7 +25,7 @@ Para todos os teste vou usar o site [automation testes](https://automationexerci
 
 - **S3:** Product</br>
   **T1:** Verifica fluxo de pagina de produtos para pagina de produto detalhado.</br>
-  **T2:** Verifica o se os produtos estão sendo buscados na pagina de produtos.
+  **T2:** Verifica se os produtos estão sendo buscados na pagina de produtos.
 
 - **S4:** Home</br>
   **T1:** Verifica o fluxo de inscrição no site atraés de email.
