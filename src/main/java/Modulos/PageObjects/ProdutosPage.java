@@ -36,17 +36,19 @@ public class ProdutosPage {
 
 
                     //-- CLICKS EM BOTÕES --//
-    public ProdutosPage clicaBtnAddCarrinho(){
+    public ProdutosPage clicaBtnAddCarrinho(int qntdprodutos){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0 ,500);");
 
-        WebElement product = driver.findElement(By.cssSelector("div[class=\"productinfo text-center\"]"));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(product).click().perform();
+        for (int i = 1; i <= qntdprodutos; i++){
+            WebElement product = driver.findElement(By.cssSelector("div[class=\"productinfo text-center\"]"));
+            Actions actions = new Actions(driver);
+            actions.moveToElement(product).click().perform();
 
-        WebElement addButton = driver.findElement(By.cssSelector("a[data-product-id=\"1\"]"));
-        addButton.click();
-
+            WebElement addButton = driver.findElement(By.cssSelector("a[data-product-id=\""+i+"\"]"));
+            addButton.click();
+            clicaBtnAddProdutoSucesso();
+        }
         return this;
     }
     public ProductDetailPage clicaBtnViewProduct(){
@@ -56,14 +58,24 @@ public class ProdutosPage {
 
         return new ProductDetailPage(driver);
     }
+    public CartPage navegaCarPage(){
+            driver.findElement(By.cssSelector("a[href=\"/view_cart\"]")).click();
+
+        return new CartPage(driver);
+    }
     public ProdutosPage clicaBtnPesquisa(){
         driver.findElement(By.cssSelector("button[id=\"submit_search\"]")).click();
 
         return this;
     }
+    public ProdutosPage clicaBtnAddProdutoSucesso(){
+        driver.findElement(By.cssSelector("button[data-dismiss=\"modal\"]")).click();
+
+        return this;
+    }
+
 
                     //-- CAPTURA MENSSAGENS --//
-
     public String capturaMenssagemAddProdutoCarrinho(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         WebElement menssagem = wait.until(ExpectedConditions

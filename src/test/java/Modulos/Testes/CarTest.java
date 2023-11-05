@@ -27,10 +27,23 @@ public class CarTest {
     public void testAddCarrinho(){
 
         String menssagem = new ProdutosPage(driver)
-                .clicaBtnAddCarrinho()
+                .clicaBtnAddCarrinho(1)
                 .capturaMenssagemAddProdutoCarrinho();
 
         Assertions.assertEquals("Your product has been added to cart.", menssagem);
+    }
+
+    @Test
+    @DisplayName("Adiciona X produtos no carrinho e verifica se a quantidade no carrinho esta correta.")
+    public void testAddCarrinhoTestQntd(){
+
+                new ProdutosPage(driver)
+                        .clicaBtnAddCarrinho(3)
+                        .navegaCarPage()
+                        .verificaAcessoCarPage()
+                        .verificaQntdProdutos(3);
+
+
     }
     @AfterEach
     public void afterEach(){driver.quit();}
