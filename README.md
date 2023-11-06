@@ -6,7 +6,8 @@ Para todos os teste vou usar o site [automation testes](https://automationexerci
 ### 👨🏻‍💻 Stack de Tecnologias
 - Programming language - **Java (JDK 19)**
 - Automation framework - **Selenium WebDriver** 
-- Project management tool - **Maven** 
+- Project management tool - **Maven**
+- Testing Framework - **JUnit** 
 
 #### 🎨 Design Patterns:
 - **Page Object Model**
