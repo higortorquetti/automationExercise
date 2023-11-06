@@ -9,6 +9,7 @@ import java.time.Duration;
 
 import static Modulos.util.Constants.storeTestSiteBaseURL;
 
+//S3: Product
 @DisplayName("Todos Produtos Test")
 public class ProductsTest {
 
@@ -22,6 +23,7 @@ public class ProductsTest {
         this.driver.get(storeTestSiteBaseURL + "/products");
     }
 
+    //T1
     @Test
     @DisplayName("Verifica pagina de todos produtos e pagina de produto detalhado")
     public void verificaTodosProdutosDetalhesProdutos(){
@@ -30,6 +32,8 @@ public class ProductsTest {
                 .clicaBtnViewProduct()
                 .verificaProdutoDetail();
     }
+
+    //T2
     @Test
     @DisplayName("Verifica pagina de produtos buscados")
     public void buscaDeProdutos(){

@@ -9,6 +9,7 @@ import java.time.Duration;
 
 import static Modulos.util.Constants.storeTestSiteBaseURL;
 
+//S4
 @DisplayName("Testes da pagina Home")
 public class HomeTest {
 
@@ -22,6 +23,7 @@ public class HomeTest {
         this.driver.get(storeTestSiteBaseURL);
     }
 
+    //T1
     @Test
     @DisplayName("Verifica a inscrição da pagina home")
     public void verificaInscricaoHome(){

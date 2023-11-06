@@ -1,8 +1,12 @@
 package Modulos.PageObjects;
 
+
+import Modulos.util.SomaQuantidadeProdutos;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class CartPage {
     private WebDriver driver;
@@ -14,11 +18,24 @@ public class CartPage {
         return this;
     }
 
-    public CartPage verificaQntdProdutos(int qntdprodutos){
-        for (int i = 1; i < qntdprodutos; i++ ){
-            driver.findElement(By.cssSelector("tr[id=\"product-" + i + "\"]")).isDisplayed();
+    public CartPage verificaProdutosCarrinho(int qntdprodutos) {
+        List<WebElement> productRows = driver.findElements(By.cssSelector("tr[id^=\"product-\"]"));
+        int totalProducts = productRows.size();
+
+        if (totalProducts == qntdprodutos) {
+            System.out.println("O numero de produtos é igual a quantidade esperada");
+        } else {
+            System.out.println("O numero de produtos não é igual a quantidade esperada");
         }
         return this;
     }
+
+    public int verificaQuantidadeDeProdutos(int qntEsperada){
+        new SomaQuantidadeProdutos(driver);
+        int qntdAtual = SomaQuantidadeProdutos.getCartTotalQuantity();
+
+        return qntdAtual;
+    }
+
 
 }

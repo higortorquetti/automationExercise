@@ -1,18 +1,15 @@
 package Modulos.Testes;
 
 import Modulos.Driver.DriverFactory;
-import Modulos.PageObjects.HomePage;
 import Modulos.PageObjects.LoginPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
 import static Modulos.util.Constants.*;
-import static java.sql.DriverManager.getDriver;
 
-
+//S1: Login
 @DisplayName("Login Test")
 public class LoginTest {
     private WebDriver driver;
@@ -24,6 +21,7 @@ public class LoginTest {
         this.driver.get(storeTestSiteBaseURL + "/login");
         }
 
+    //T1
     @Test
     @DisplayName("Com credenciais válidas, faz o login e depois o Logout.")
     public void testoginComCredenciaisValidasEntaoLogout(){
@@ -37,6 +35,8 @@ public class LoginTest {
                     .clicaNoBotaoLogout()
                     .verificarAcessoLoginPage();
     }
+
+    //T2
     @Test
     @DisplayName("Fazer o Login com o email incorreto.")
     public void testLoginEmailIncorreto() {
@@ -49,6 +49,8 @@ public class LoginTest {
 
         Assertions.assertEquals("Your email or password is incorrect!", emailIncorreto);
     }
+
+    //T3
     @Test
     @DisplayName("Criar um novo usuário e exluir em seguida.")
     public void testCriarExcluirNovoUsuario(){
@@ -75,6 +77,8 @@ public class LoginTest {
                 .clicaNoBotaoContinuar();
 
     }
+
+    //T4
     @Test
     @DisplayName("Registrar Usuário com email já existente")
     public void testEmailExistesSignup() {

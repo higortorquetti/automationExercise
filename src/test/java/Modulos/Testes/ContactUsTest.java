@@ -12,6 +12,7 @@ import java.time.Duration;
 
 import static Modulos.util.Constants.storeTestSiteBaseURL;
 
+//S2: Contact Us
 @DisplayName("Test contact US")
 public class ContactUsTest {
 
@@ -25,6 +26,7 @@ public class ContactUsTest {
         this.driver.get(storeTestSiteBaseURL + "/contact_us");
     }
 
+    //T1
     @Test
     @DisplayName("Contact Us Form")
     public void testContactUsForm() {

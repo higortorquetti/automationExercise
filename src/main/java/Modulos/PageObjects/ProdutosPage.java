@@ -36,13 +36,14 @@ public class ProdutosPage {
 
 
                     //-- CLICKS EM BOTÕES --//
-    public ProdutosPage clicaBtnAddCarrinho(int qntdprodutos){
+    public ProdutosPage clicaBtnAddProdutoCarrinho(int qntdprodutos){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0 ,500);");
 
         for (int i = 1; i <= qntdprodutos; i++){
             WebElement product = driver.findElement(By.cssSelector("div[class=\"productinfo text-center\"]"));
             Actions actions = new Actions(driver);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", product);
             actions.moveToElement(product).click().perform();
 
             WebElement addButton = driver.findElement(By.cssSelector("a[data-product-id=\""+i+"\"]"));
@@ -71,6 +72,18 @@ public class ProdutosPage {
     public ProdutosPage clicaBtnAddProdutoSucesso(){
         driver.findElement(By.cssSelector("button[data-dismiss=\"modal\"]")).click();
 
+        return this;
+    }
+    public ProdutosPage clicaBtnAddUmProduto(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0 ,500);");
+        WebElement product = driver.findElement(By.cssSelector("div[class=\"productinfo text-center\"]"));
+        Actions actions = new Actions(driver);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", product);
+        actions.moveToElement(product).click().perform();
+
+        WebElement addButton = driver.findElement(By.cssSelector("a[data-product-id=\"1\"]"));
+        addButton.click();
         return this;
     }
 

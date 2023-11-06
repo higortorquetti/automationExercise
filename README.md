@@ -29,3 +29,8 @@ Para todos os teste vou usar o site [automation testes](https://automationexerci
 
 - **S4:** Home</br>
   **T1:** Verifica o fluxo de inscrição no site atraés de email.
+
+- **S5** Cart</br>
+  **T1:** Verifica se os produtos estão sendo inseridos no carrinho com sucesso</br>
+  **T2:** Inseri X produtos no carrinho e verifica se a quantidade no carrinho é igual a inserida</br>
+  **T3** Inseri X produtos e X quantidade e verifica se a quantidade de cada produto é igual a esperada
