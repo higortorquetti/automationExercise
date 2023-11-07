@@ -56,7 +56,7 @@ public class CarTest {
                     .clicaBtnAddProdutoCarrinho(2)
                     .navegaCarPage()
                     .verificaProdutosCarrinho(3)
-                    .verificaQuantidadeDeProdutos(5);
+                    .verificaQuantidadeDeProdutos();
 
             Assertions.assertEquals(5, qntdAtual);
 

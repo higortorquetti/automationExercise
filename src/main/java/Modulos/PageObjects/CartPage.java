@@ -13,10 +13,13 @@ public class CartPage {
 
     public CartPage(WebDriver driver) {this.driver = driver;}
 
+                    //-- VERIFICAÇÕES DE PAGINA --//
     public CartPage verificaAcessoCarPage(){
             driver.findElement(By.cssSelector("li[class=\"active\"]")).isDisplayed();
         return this;
     }
+
+
 
     public CartPage verificaProdutosCarrinho(int qntdprodutos) {
         List<WebElement> productRows = driver.findElements(By.cssSelector("tr[id^=\"product-\"]"));
@@ -30,7 +33,7 @@ public class CartPage {
         return this;
     }
 
-    public int verificaQuantidadeDeProdutos(int qntEsperada){
+    public int verificaQuantidadeDeProdutos(){
         new SomaQuantidadeProdutos(driver);
         int qntdAtual = SomaQuantidadeProdutos.getCartTotalQuantity();
 

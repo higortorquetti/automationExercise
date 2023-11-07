@@ -35,7 +35,7 @@ public class ProdutosPage {
     }
 
 
-                    //-- CLICKS EM BOTÕES --//
+                        //-- CLICKS --//
     public ProdutosPage clicaBtnAddProdutoCarrinho(int qntdprodutos){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0 ,500);");
@@ -88,7 +88,7 @@ public class ProdutosPage {
     }
 
 
-                    //-- CAPTURA MENSSAGENS --//
+                    //-- CAPTURA MENSSAGEN --//
     public String capturaMenssagemAddProdutoCarrinho(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         WebElement menssagem = wait.until(ExpectedConditions

@@ -2,8 +2,10 @@ package Modulos.Testes;
 
 import Modulos.Driver.DriverFactory;
 import Modulos.PageObjects.LoginPage;
+import Modulos.PageObjects.WebBasePage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 import java.time.Duration;
 
@@ -11,7 +13,7 @@ import static Modulos.util.Constants.*;
 
 //S1: Login
 @DisplayName("Login Test")
-public class LoginTest {
+public class LoginTest{
     private WebDriver driver;
     @BeforeEach
     public void beforeEach() {
@@ -24,30 +26,29 @@ public class LoginTest {
     //T1
     @Test
     @DisplayName("Com credenciais válidas, faz o login e depois o Logout.")
-    public void testoginComCredenciaisValidasEntaoLogout(){
+    public void testLoginComCredenciaisValidasEntaoLogout(){
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
             new LoginPage(driver)
                     .verificarAcessoLoginPage()
-                    .inserirEmailLogin(email)
-                    .inserirSenhaLogin(password)
-                    .clicaNoBotaoDeLogin()
+                    .setInputEmailLogin(emailLogin)
+                    .setInputPasswordLogin(passwordLogin)
+                    .clickBtnLogin()
                     .verificarSeEstaLogado()
-                    .clicaNoBotaoLogout()
-                    .verificarAcessoLoginPage();
+                    .clickLogoutBtn();
     }
 
     //T2
     @Test
     @DisplayName("Fazer o Login com o email incorreto.")
     public void testLoginEmailIncorreto() {
-        String emailIncorreto = new LoginPage(driver)
+        String emailErrorMessage = new LoginPage(driver)
                 .verificarAcessoLoginPage()
-                .inserirEmailLogin("ze@zinh")
-                .inserirSenhaLogin("123456789")
-                .clicaNoBotaoDeLoginEmailErrado()
-                .capturaMenssagemEmailIncorreto();
+                .setInputEmailLogin(emailInvaldo)
+                .setInputPasswordLogin(passwordLogin)
+                .clickBtnLoginInvalido()
+                .getEmailErrorMessageLogin();
 
-        Assertions.assertEquals("Your email or password is incorrect!", emailIncorreto);
+        Assertions.assertEquals(emailErrorMessageDefault, emailErrorMessage);
     }
 
     //T3
@@ -57,24 +58,20 @@ public class LoginTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         new LoginPage(driver)
                 .verificarAcessoLoginPage()
-                .inserirNomeSignup("zezinho")
-                .inserirEmailSignup("zezinho@ze.com")
-                .clicaBtnSigupPage()
+                .setInputNomeSignup(nomeSignup)
+                .setInputEmailSignup(emailSignup)
+                .clickBtnSignup()
                 .verificaAcessoPaginaSignup()
-                .preencherDadosSignup("123456789",
-                        18, 6, 2012,
-                        "Zezinho", "Silv Silva",
-                        "Rua dos bobos, numero 0",
-                        "SP","Bauru", "159874652",
-                        "999555888"
-                )
-                .clicaNoBotaoSignup()
-                .acessoPaginaContaCriadaSucesso()
-                .clicaNoBotaoContinuar()
+                .setDataSignupForm(passwordSignup, daySignup, monthSignup, yearSignup,
+                                    firstNameSignup, lastNameSignup, enderecoSignup, paisSignup,  estadoSignup
+                                    , cidadeSignup, cepSignup, telefoneSignup)
+                .clickBtnSignup()
+                .verificaAcessoContaCriadaPage()
+                .clickBtnContinuar()
                 .verificarSeEstaLogado()
-                .excluirContaNovoUsuario()
-                .verificaPaginaContaExcluida()
-                .clicaNoBotaoContinuar();
+                .clickLinkDeleteAcc()
+                .verificaAcessoContaExcluidaPage()
+                .clickBtnContinuar();
 
     }
 
@@ -84,10 +81,10 @@ public class LoginTest {
     public void testEmailExistesSignup() {
         String menssagem = new LoginPage(driver)
                 .verificarAcessoLoginPage()
-                .inserirEmailSignup("ze@zinho.com")
-                .inserirNomeSignup("zezinho")
-                .clicarNoBotaoSignupEmailExistente()
-                .capturaMenssagemEmailExistente();
+                .setInputEmailSignup("ze@zinho.com")
+                .setInputNomeSignup("zezinho")
+                .clickBtnSignupInvalido()
+                .getEmailErrorMessageSingup();
 
         Assertions.assertEquals("Email Address already exist!", menssagem);
     }
