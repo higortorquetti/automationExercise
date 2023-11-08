@@ -2,11 +2,29 @@ package Modulos.util;
 
 public final class Constants {
     private Constants(){}
+    public static final String storeTestSiteBaseURL = "https://automationexercise.com";
+
     //credenciais login
     public static final String emailLogin = "ze@zinho.com";
     public static final String emailInvaldo = "ze@zinh.com";
     public static final String passwordLogin = "123456789";
-    // dados signup
+
+    //menssagens e alertas
+    public static final String loginEmailErrorMessageDefault = "Your email or password is incorrect!";
+    public static final String signupEmailErrorMessageDefault = "Email Address already exist!";
+    public static final String subscribeSucessMessage = "You have been successfully subscribed!";
+    public static final String productAddSucessMessage = "Your product has been added to cart.";
+
+
+    // product
+    public static final String valorInputBusca = "Blue";
+
+    //contact us data
+    public static final String caminhoArquivo = "C:\\Users\\higor\\OneDrive\\Área de Trabalho\\CV_Higor Torquetti_ENG.docx";
+    public static final String contactUsTema = "testeContact";
+    public static final String contactUsMenssage = "Test Contact";
+
+    // signup data
     public static final String nomeSignup = "zezinho";
     public static final String emailSignup = "zezinho@ze.com";
     public static final String passwordSignup = "123456789";
@@ -22,7 +40,6 @@ public final class Constants {
     public static final int monthSignup = 6;
     public static final int yearSignup = 2012;
 
-    public static final String accountCreateSucessMessage = "Account Created!";
-    public static final String emailErrorMessageDefault = "Your email or password is incorrect!";
-    public static final String storeTestSiteBaseURL = "https://automationexercise.com";
 }
+
+

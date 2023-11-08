@@ -13,9 +13,9 @@ public class SomaQuantidadeProdutos {
 
     public static int getCartTotalQuantity() {
         int totalQuantity = 0;
-        List<WebElement> quantityElements = driver.findElements(By.cssSelector("td[class=\"cart_quantity\"]"));
+        List<WebElement> quantityElementsCart = driver.findElements(By.cssSelector("td[class=\"cart_quantity\"]"));
 
-        for (WebElement quantityElement : quantityElements) {
+        for (WebElement quantityElement : quantityElementsCart) {
             int productQuantity = Integer.parseInt(quantityElement.getText());
             totalQuantity += productQuantity;
         }

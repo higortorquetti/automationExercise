@@ -1,11 +1,9 @@
 package Modulos.PageObjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class HomePage extends WebBasePage {
 
@@ -28,14 +26,25 @@ public class HomePage extends WebBasePage {
     private WebElement logoutLink;
     @FindBy (css = "li a[href=\"/delete_account\"]")
     private WebElement deleteAccLink;
+    @FindBy (css = "input[id=\"susbscribe_email\"]")
+    private WebElement subscribeInputEmailHome;
+    @FindBy (css = "button[id=\"subscribe\"]")
+    private WebElement subscribeBtn;
+    @FindBy (css = "div[id=\"success-subscribe\"] div")
+    private WebElement subscribeSucessMessage;
+
     public HomePage(WebDriver driver){
         super(driver);
         this.driver = driver;
     }
 
                     //-- VERIFICAÇÕES DE PAGINA --//
-    public HomePage verificarPaginaHome(){
-        driver.findElement(By.cssSelector("div ul li a[href=\"/\"][ style=\"color: orange;\"]")).isDisplayed();
+    public HomePage verificaAcessoPaginaHome(){
+            String styleAtrribute = homeLink.getAttribute("style");
+            boolean selectedTrue = styleAtrribute.contains("color: orange;");
+            if (!selectedTrue){
+                throw new RuntimeException();
+            }
         return this;
     }
     public HomePage verificarSeEstaLogado(){
@@ -48,18 +57,18 @@ public class HomePage extends WebBasePage {
     public HomePage subscriptionEmail(String email){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0, 500)");
-        driver.findElement(By.cssSelector("input[id=\"susbscribe_email\"]")).sendKeys(email);
+        subscribeInputEmailHome.sendKeys(email);
         return this;
     }
     
 
                             //-- CLICKS --//
-    public LoginPage clickLogoutBtn(){
-            logoutLink.click();
+    public LoginPage clickLinkLogout(){
+        logoutLink.click();
         return new LoginPage(driver);
     }
-    public HomePage clicaBtnSubscribe(){
-        driver.findElement(By.cssSelector("button[id=\"subscribe\"]")).click();
+    public HomePage clickBtnSubscribe(){
+        subscribeBtn.click();
         return this;
     }
     public ContaExcluidaPage clickLinkDeleteAcc(){
@@ -69,8 +78,8 @@ public class HomePage extends WebBasePage {
 
 
                     //-- CAPTURA DE MENSSAGENS --//
-    public String capturaMenssagemSucesso(){
-        return driver.findElement(By.cssSelector("div[id=\"success-subscribe\"] div")).getText();
+    public String getSubscribeSucecssMessage(){
+        return subscribeSucessMessage.getText();
     }
 
 

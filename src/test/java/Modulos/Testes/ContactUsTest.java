@@ -10,7 +10,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
 
-import static Modulos.util.Constants.storeTestSiteBaseURL;
+import static Modulos.util.Constants.*;
 
 //S2: Contact Us
 @DisplayName("Test contact US")
@@ -25,21 +25,19 @@ public class ContactUsTest {
         this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         this.driver.get(storeTestSiteBaseURL + "/contact_us");
     }
-
     //T1
     @Test
     @DisplayName("Contact Us Form")
     public void testContactUsForm() {
         new ContactUsPage(driver)
                 .verificaPaginaContactUs()
-                .preencherDadosContacUs("zezinho",
-                        "ze@zinho.com",
-                        "testeContact",
-                        "Test Contact",
-                        "C:\\Users\\higor\\OneDrive\\Área de Trabalho\\CV_Higor Torquetti_ENG.docx")
-                .clicaNoBotaoSubmit()
-                .verificaMenssagemDeSucessoContatcUs()
-                .clicaHomePage();
+                .setDataContatcUsForm(firstNameSignup,
+                        emailLogin,
+                        contactUsTema,
+                        contactUsMenssage,
+                        caminhoArquivo)
+                .clickBtnSubmitContacUs()
+                .verificaMenssagemDeSucessoContatcUs();
     }
 
     @AfterEach

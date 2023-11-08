@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
 
-import static Modulos.util.Constants.storeTestSiteBaseURL;
+import static Modulos.util.Constants.*;
 
 //S3: Product
 @DisplayName("Todos Produtos Test")
@@ -28,8 +28,8 @@ public class ProductsTest {
     @DisplayName("Verifica pagina de todos produtos e pagina de produto detalhado")
     public void verificaTodosProdutosDetalhesProdutos(){
         new ProdutosPage(driver)
-                .verificaAcessoProdutosPageAllProducts()
-                .clicaBtnViewProduct()
+                .verificaAcessoProdutos()
+                .clickBtnViewProduct()
                 .verificaProdutoDetail();
     }
 
@@ -37,13 +37,11 @@ public class ProductsTest {
     @Test
     @DisplayName("Verifica pagina de produtos buscados")
     public void buscaDeProdutos(){
-        String produtoBusca = new ProdutosPage(driver)
-                .verificaAcessoProdutosPageAllProducts()
-                .inseriValorPesquisa("Blue")
-                .clicaBtnPesquisa()
+                new ProdutosPage(driver)
+                .verificaAcessoProdutos()
+                .setValorPesquisa(valorInputBusca)
+                .clickBtnPesquisa()
                 .verificaAcessoProdutosPageSearchProducts();
-
-        Assertions.assertEquals("SEARCHED PRODUCTS", produtoBusca);
 
     }
     @AfterEach

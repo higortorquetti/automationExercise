@@ -1,6 +1,6 @@
 package Modulos.PageObjects;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,11 +14,20 @@ public class LoginPage extends WebBasePage{
     private WebDriver driver;
     @FindBy (css = "input[type=\"email\"][data-qa=\"login-email\"]")
     private WebElement InputEmailLogin;
-    private By InputPasswordLogin = By.cssSelector("input[type=\"password\"][data-qa=\"login-password\"]");
-    private By BtnLogin = By.cssSelector("button[type=\"submit\"][data-qa=\"login-button\"]");
-    private By InputNomeSignup = By.cssSelector("input[type=\"text\"][data-qa=\"signup-name\"]");
-    private By InputEmailSignup = By.cssSelector("input[type=\"email\"][data-qa=\"signup-email\"]");
-    private By BtnSigup = By.cssSelector("button[type=\"submit\"][data-qa=\"signup-button\"]");
+    @FindBy (css = "input[type=\"password\"][data-qa=\"login-password\"]")
+    private WebElement InputPasswordLogin;
+    @FindBy (css = "button[type=\"submit\"][data-qa=\"login-button\"]")
+    private WebElement BtnLogin;
+    @FindBy (css = "input[type=\"text\"][data-qa=\"signup-name\"]")
+    private WebElement InputNomeSignup;
+    @FindBy (css = "input[type=\"email\"][data-qa=\"signup-email\"]")
+    private WebElement InputEmailSignup;
+    @FindBy (css = "button[type=\"submit\"][data-qa=\"signup-button\"]")
+    private WebElement BtnSigup;
+    @FindBy (css = "div[class=\"signup-form\"] h2")
+    private WebElement textLoginPage;
+    @FindBy (css = "p[style=\"color: red;\"]")
+    private WebElement errorMessageLogin;
     public LoginPage(WebDriver driver){
         super(driver);
         this.driver = driver;
@@ -27,7 +36,7 @@ public class LoginPage extends WebBasePage{
 
     //-- VERIFICAÇÕES DE PAGINA --//
     public LoginPage verificarAcessoLoginPage(){
-            driver.findElement(By.cssSelector("div[class=\"signup-form\"] h2")).isDisplayed();
+            textLoginPage.isDisplayed();
         return this;
     }
 
@@ -41,20 +50,17 @@ public class LoginPage extends WebBasePage{
         return this;
     }
     public LoginPage setInputPasswordLogin(String password) {
-        WebElement passwordInput = driver.findElement(InputPasswordLogin);
-        passwordInput.clear();
-        passwordInput.sendKeys(password);
+        InputPasswordLogin.clear();
+        InputPasswordLogin.sendKeys(password);
 
         return this;
     }
     public LoginPage setInputNomeSignup(String nome){
-        WebElement nameInput = driver.findElement(InputNomeSignup);
-        nameInput.sendKeys(nome);
+        InputNomeSignup.sendKeys(nome);
         return this;
     }
     public LoginPage setInputEmailSignup(String email){
-        WebElement emailSingup = driver.findElement(InputEmailSignup);
-        emailSingup.sendKeys(email);
+        InputEmailSignup.sendKeys(email);
         return this;
     }
 
@@ -63,26 +69,20 @@ public class LoginPage extends WebBasePage{
     public SignupPage clickBtnSignup() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0, 500);");
-        WebElement signupBtn = driver.findElement(BtnSigup);
-        signupBtn.click();
-
+        BtnSigup.click();
         return new SignupPage(driver);
 
     }
     public HomePage clickBtnLogin() {
-            WebElement loginBtn = driver.findElement(BtnLogin);
-            loginBtn.click();
+        BtnLogin.click();
         return new HomePage(driver);
     }
     public LoginPage clickBtnLoginInvalido(){
-            WebElement loginBtn = driver.findElement(BtnLogin);
-            loginBtn.click();
+        BtnLogin.click();
         return this;
     }
     public LoginPage clickBtnSignupInvalido(){
-        WebElement singupBtn = driver.findElement(BtnSigup);
-        singupBtn.click();
-
+        BtnSigup.click();
         return this;
     }
 
@@ -90,20 +90,12 @@ public class LoginPage extends WebBasePage{
     //-- CAPTURA DE MENSSAGENS --//
     public String getEmailErrorMessageLogin() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        WebElement menssagem = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By
-                        .cssSelector("p[style=\"color: red;\"]")));
-
-        return menssagem.getText();
+        return errorMessageLogin.getText();
 
     }
     public String getEmailErrorMessageSingup() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        driver.findElement(By.cssSelector("id=\"textbox1\"")).getText();
-        WebElement menssagem = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By
-                        .cssSelector("p[style=\"color: red;\"]")));
-
-        return menssagem.getText();
+        wait.until(ExpectedConditions.visibilityOf(errorMessageLogin));
+        return errorMessageLogin.getText();
     }
 }

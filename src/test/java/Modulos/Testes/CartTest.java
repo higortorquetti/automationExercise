@@ -4,14 +4,13 @@ import Modulos.Driver.DriverFactory;
 import Modulos.PageObjects.ProdutosPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
-
 import java.time.Duration;
+import static Modulos.util.Constants.*;
 
-import static Modulos.util.Constants.storeTestSiteBaseURL;
 
 //S5: Cart
 @DisplayName("Cart Test")
-public class CarTest {
+public class CartTest {
 
     private WebDriver driver;
 
@@ -26,13 +25,12 @@ public class CarTest {
     //T1
     @Test
     @DisplayName("Adiciona um produto ao carrinho.")
-    public void testAddCarrinho(){
+    public void testAddProdutoCarrinho(){
 
         String menssagem = new ProdutosPage(driver)
-                .clicaBtnAddUmProduto()
+                .clickBtnAddProduto()
                 .capturaMenssagemAddProdutoCarrinho();
-
-        Assertions.assertEquals("Your product has been added to cart.", menssagem);
+        Assertions.assertEquals(productAddSucessMessage, menssagem);
     }
 
     //T2
@@ -41,22 +39,22 @@ public class CarTest {
     public void testAddCarrinhoTestQntdProduto(){
 
                 new ProdutosPage(driver)
-                        .clicaBtnAddProdutoCarrinho(3)
-                        .navegaCarPage()
-                        .verificaAcessoCarPage()
+                        .clickBtnAddProdutoCarrinho(3)
+                        .acessaCartPage()
+                        .verificaAcessoCartPage()
                         .verificaProdutosCarrinho(3);
     }
 
     //T3
     @Test
-    @DisplayName("Adiciona X quantidade de X produto e verifica se no carrinho esta correto")
-    public void testAddCarrinhoTestQntd(){
+    @DisplayName("Adiciona X quantidades de X produtos e verifica se no carrinho esta correto")
+    public void testAddCarrinhoQntd(){
             int qntdAtual = new ProdutosPage(driver)
-                    .clicaBtnAddProdutoCarrinho(3)
-                    .clicaBtnAddProdutoCarrinho(2)
-                    .navegaCarPage()
+                    .clickBtnAddProdutoCarrinho(3)
+                    .clickBtnAddProdutoCarrinho(2)
+                    .acessaCartPage()
                     .verificaProdutosCarrinho(3)
-                    .verificaQuantidadeDeProdutos();
+                    .verificaQuantidadeDeCadaProduto();
 
             Assertions.assertEquals(5, qntdAtual);
 

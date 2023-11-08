@@ -1,31 +1,45 @@
 package Modulos.PageObjects;
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindBy;
 
-public class ContactUsPage {
+public class ContactUsPage extends WebBasePage {
 
     private WebDriver driver;
-    public ContactUsPage(WebDriver navegador){this.driver = navegador;}
+    @FindBy (css = "div[class=\"status alert alert-success\"]")
+    private WebElement contactusSucessMessage;
+    @FindBy (css = "input[data-qa=\"submit-button\"]")
+    private WebElement contactusBtnSubmit;
+    @FindBy (css = "input[data-qa=\"name\"]")
+    private WebElement contactusInputName;
+    @FindBy (css = "input[data-qa=\"email\"]")
+    private WebElement contactusInputEmail;
+    @FindBy (css = "input[data-qa=\"subject\"]")
+    private WebElement contactusInputTema;
+    @FindBy (css = "textarea[data-qa=\"message\"]")
+    private WebElement contactusTextArea;
+    @FindBy (css = "input[type=\"file\"]")
+    private WebElement contactusInputArquivo;
+    @FindBy (css = "div[class=\"col-sm-8\"] div h2[class=\"title text-center\"]")
+    private WebElement contatacUsTextTitle;
+    public ContactUsPage(WebDriver driver){
+        super(driver);
+        this.driver = driver;
+    }
 
                     //-- VERIFICAÇÕES DE PAGINA --//
     public ContactUsPage verificaPaginaContactUs(){
-        driver.findElement(By
-                .cssSelector("div[class=\"col-sm-8\"] div h2[class=\"title text-center\"]")).isDisplayed();
-
+        contatacUsTextTitle.isDisplayed();
         return this;
     }
     public ContactUsPage verificaMenssagemDeSucessoContatcUs() {
-        driver.findElement(By.cssSelector("div[class=\"status alert alert-success\"]")).isDisplayed();
-
+        contactusSucessMessage.isDisplayed();
         return this;
     }
 
 
                     //-- INSERÇÃO DE DADOS --//
-    public ContactUsPage preencherDadosContacUs(
+    public ContactUsPage setDataContatcUsForm(
             String name,
             String email,
             String tema,
@@ -33,29 +47,23 @@ public class ContactUsPage {
             String arquivo){
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
-
-        driver.findElement(By.cssSelector("input[data-qa=\"name\"]")).sendKeys(name);
-        driver.findElement(By.cssSelector("input[data-qa=\"email\"]")).sendKeys(email);
-        driver.findElement(By.cssSelector("input[data-qa=\"subject\"]")).sendKeys(tema);
+        contactusInputName.sendKeys(name);
+        contactusInputEmail.sendKeys(email);
+        contactusInputTema.sendKeys(tema);
         js.executeScript("window.scrollBy(0, 500);");
-        driver.findElement(By.cssSelector("textarea[data-qa=\"message\"]")).sendKeys(msg);
-        driver.findElement(By.cssSelector("input[type=\"file\"]")).sendKeys(arquivo);
+        contactusTextArea.sendKeys(msg);
+        contactusInputArquivo.sendKeys(arquivo);
         return this;
     }
 
 
                     //-- CLICKS EM BOTÕES --//
-    public ContactUsPage clicaNoBotaoSubmit(){
+    public ContactUsPage clickBtnSubmitContacUs(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0, 500);");
-        driver.findElement(By.cssSelector("input[data-qa=\"submit-button\"]")).click();
+        contactusBtnSubmit.click();
         Alert alert = driver.switchTo().alert();
         alert.accept();
         return this;
-    }
-    public HomePage clicaHomePage(){
-        driver.findElement(By.cssSelector("a[class=\"btn btn-success\"]")).click();
-
-        return new HomePage(driver);
     }
 }

@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class ContaCriadaPage {
+public class ContaCriadaPage extends WebBasePage {
 
     private WebDriver driver;
     @FindBy (css = "h2[data-qa=\"account-created\"]")
@@ -14,8 +14,9 @@ public class ContaCriadaPage {
     @FindBy (css = "a[data-qa=\"continue-button\"]")
     private WebElement BtnContinue;
 
-    public ContaCriadaPage(WebDriver driver){this.driver = driver;
-        PageFactory.initElements(driver, this);
+    public ContaCriadaPage(WebDriver driver){
+        super(driver);
+        this.driver = driver;
     }
 
                     //-- VERIFICAÇÕES DE PAGINA --//
@@ -24,7 +25,7 @@ public class ContaCriadaPage {
         return this;
     }
 
-                        //-- CLICKS EM BOTÕES --//
+                        //-- CLICKS --//
     public HomePage clickBtnContinuar() {
         BtnContinue.click();
         return new HomePage(driver);

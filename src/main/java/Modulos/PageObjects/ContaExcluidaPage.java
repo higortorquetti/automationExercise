@@ -5,15 +5,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ContaExcluidaPage {
+public class ContaExcluidaPage extends WebBasePage{
     
     private WebDriver driver;
     @FindBy (css = "h2[data-qa=\"account-deleted\"] b")
     private WebElement textAccDeleted;
     @FindBy (css = "a[data-qa=\"continue-button\"]")
     private WebElement btnContinuar;
-    public ContaExcluidaPage(WebDriver driver){this.driver = driver;
-        PageFactory.initElements(driver, this);
+    public ContaExcluidaPage(WebDriver driver){
+        super(driver);
+        this.driver = driver;
     }
 
                     //-- VERIFICAÇÕES DE PAGINA --//

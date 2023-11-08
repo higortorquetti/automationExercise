@@ -2,13 +2,9 @@ package Modulos.Testes;
 
 import Modulos.Driver.DriverFactory;
 import Modulos.PageObjects.LoginPage;
-import Modulos.PageObjects.WebBasePage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
-
 import java.time.Duration;
-
 import static Modulos.util.Constants.*;
 
 //S1: Login
@@ -34,7 +30,7 @@ public class LoginTest{
                     .setInputPasswordLogin(passwordLogin)
                     .clickBtnLogin()
                     .verificarSeEstaLogado()
-                    .clickLogoutBtn();
+                    .clickLinkLogout();
     }
 
     //T2
@@ -48,7 +44,7 @@ public class LoginTest{
                 .clickBtnLoginInvalido()
                 .getEmailErrorMessageLogin();
 
-        Assertions.assertEquals(emailErrorMessageDefault, emailErrorMessage);
+        Assertions.assertEquals(loginEmailErrorMessageDefault, emailErrorMessage);
     }
 
     //T3
@@ -81,12 +77,12 @@ public class LoginTest{
     public void testEmailExistesSignup() {
         String menssagem = new LoginPage(driver)
                 .verificarAcessoLoginPage()
-                .setInputEmailSignup("ze@zinho.com")
-                .setInputNomeSignup("zezinho")
+                .setInputEmailSignup(emailLogin)
+                .setInputNomeSignup(firstNameSignup)
                 .clickBtnSignupInvalido()
                 .getEmailErrorMessageSingup();
 
-        Assertions.assertEquals("Email Address already exist!", menssagem);
+        Assertions.assertEquals(signupEmailErrorMessageDefault, menssagem);
     }
 
     @AfterEach
