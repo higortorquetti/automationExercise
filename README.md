@@ -31,7 +31,7 @@ Para todos os teste vou usar o site [automation testes](https://automationexerci
   **T2:** Verifica se os produtos estão sendo buscados na pagina de produtos.
 
 - **S4:** Home</br>
-  **T1:** Verifica o fluxo de inscrição no site atraés de email.
+  **T1:** Verifica o fluxo de inscrição no site através do email.
 
 - **S5** Cart</br>
   **T1:** Verifica se os produtos estão sendo inseridos no carrinho com sucesso</br>
