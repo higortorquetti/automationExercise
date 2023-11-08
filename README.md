@@ -11,7 +11,9 @@ Para todos os teste vou usar o site [automation testes](https://automationexerci
 
 #### 🎨 Design Patterns:
 - **Page Object Model**
-- **Fluent Page**  
+- **Fluent Page** 
+- **PageFactory**
+- **DriverFactory** 
 
 ***
 ### 🧪 Testes:
