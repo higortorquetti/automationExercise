@@ -20,7 +20,7 @@ Para todos os teste vou usar o site [automation testes](https://automationexerci
 - **S1: Login**  
   **T1:** Login e Logout com usuario valido.  
   **T2:** Login usando email incorreto.</br>
-  **T3:** Criar um novo usuario e exlcui em seguida. </br>
+  **T3:** Criar um novo usuario e exclui em seguida. </br>
   **T4:** Registrar novo usuario com email já existente.
 
 - **S2: Contact Us**  
