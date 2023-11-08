@@ -26,8 +26,8 @@ public class LoginTest{
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
             new LoginPage(driver)
                     .verificarAcessoLoginPage()
-                    .setInputEmailLogin(emailLogin)
-                    .setInputPasswordLogin(passwordLogin)
+                    .setLoginInputEmail(emailLogin)
+                    .setLoginInputPassword(passwordLogin)
                     .clickBtnLogin()
                     .verificarSeEstaLogado()
                     .clickLinkLogout();
@@ -39,8 +39,8 @@ public class LoginTest{
     public void testLoginEmailIncorreto() {
         String emailErrorMessage = new LoginPage(driver)
                 .verificarAcessoLoginPage()
-                .setInputEmailLogin(emailInvaldo)
-                .setInputPasswordLogin(passwordLogin)
+                .setLoginInputEmail(emailInvaldo)
+                .setLoginInputPassword(passwordLogin)
                 .clickBtnLoginInvalido()
                 .getEmailErrorMessageLogin();
 
@@ -54,8 +54,8 @@ public class LoginTest{
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         new LoginPage(driver)
                 .verificarAcessoLoginPage()
-                .setInputNomeSignup(nomeSignup)
-                .setInputEmailSignup(emailSignup)
+                .setSignupInputName(nomeSignup)
+                .setSignupInputEmail(emailSignup)
                 .clickBtnSignup()
                 .verificaAcessoPaginaSignup()
                 .setDataSignupForm(passwordSignup, daySignup, monthSignup, yearSignup,
@@ -77,8 +77,8 @@ public class LoginTest{
     public void testEmailExistesSignup() {
         String menssagem = new LoginPage(driver)
                 .verificarAcessoLoginPage()
-                .setInputEmailSignup(emailLogin)
-                .setInputNomeSignup(firstNameSignup)
+                .setSignupInputEmail(emailLogin)
+                .setSignupInputName(firstNameSignup)
                 .clickBtnSignupInvalido()
                 .getEmailErrorMessageSingup();
 

@@ -3,16 +3,15 @@ package Modulos.PageObjects;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 
 public class ContaCriadaPage extends WebBasePage {
 
     private WebDriver driver;
     @FindBy (css = "h2[data-qa=\"account-created\"]")
-    private WebElement textAccCreateSucess;
+    private WebElement contaCriadaSucessoText;
     @FindBy (css = "a[data-qa=\"continue-button\"]")
-    private WebElement BtnContinue;
+    private WebElement contaCriadaSucessoBtnContinue;
 
     public ContaCriadaPage(WebDriver driver){
         super(driver);
@@ -21,13 +20,13 @@ public class ContaCriadaPage extends WebBasePage {
 
                     //-- VERIFICAÇÕES DE PAGINA --//
     public ContaCriadaPage verificaAcessoContaCriadaPage() {
-            textAccCreateSucess.isDisplayed();
+            contaCriadaSucessoText.isDisplayed();
         return this;
     }
 
                         //-- CLICKS --//
     public HomePage clickBtnContinuar() {
-        BtnContinue.click();
+        contaCriadaSucessoBtnContinue.click();
         return new HomePage(driver);
     }
 

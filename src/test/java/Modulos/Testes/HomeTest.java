@@ -23,7 +23,7 @@ public class HomeTest {
 
     //T1
     @Test
-    @DisplayName("Verifica a inscrição da pagina home")
+    @DisplayName("Se inscreve com email pela pagina home")
     public void verificaInscricaoHome(){
         String menssagemSucesso = new HomePage(driver)
                 .verificaAcessoPaginaHome()

@@ -9,30 +9,27 @@ public class HomePage extends WebBasePage {
 
     protected WebDriver driver;
     @FindBy (css = "a[href=\"/\"]")
-    private WebElement homeLink;
+    private WebElement navBarHomeLink;
     @FindBy (css = "a[href=\"/products\"]")
-    private WebElement productsLink;
+    private WebElement navBarProductsLink;
     @FindBy (css = "a[href=\"/view_cart\"]")
-    private WebElement cartLink;
+    private WebElement navBarCartLink;
     @FindBy (css = "a[href=\"/login\"]")
-    private WebElement loginLink;
-    @FindBy (css = "a[href=\"/test_cases\"]")
-    private WebElement testCasesLink;
-    @FindBy (css = "a[href=\"/api_list\"]")
-    private WebElement apiListLink;
+    private WebElement navBarLoginLink;
     @FindBy (css = "a[href=\"/contact_us\"]")
-    private WebElement contactUsLink;
+    private WebElement navBarContactUsLink;
     @FindBy (css = "a[href=\"/logout\"]")
-    private WebElement logoutLink;
+    private WebElement navBarLogoutLink;
     @FindBy (css = "li a[href=\"/delete_account\"]")
-    private WebElement deleteAccLink;
+    private WebElement navBarDeleteAccLink;
     @FindBy (css = "input[id=\"susbscribe_email\"]")
-    private WebElement subscribeInputEmailHome;
+    private WebElement homeInputSubcribe;
     @FindBy (css = "button[id=\"subscribe\"]")
-    private WebElement subscribeBtn;
+    private WebElement homeBtnSubscribe;
     @FindBy (css = "div[id=\"success-subscribe\"] div")
-    private WebElement subscribeSucessMessage;
-
+    private WebElement homeSubscribeSucessMessage;
+    @FindBy (css = "div[class=\"carousel-inner\"]")
+    private WebElement homeCarrocel;
     public HomePage(WebDriver driver){
         super(driver);
         this.driver = driver;
@@ -40,15 +37,11 @@ public class HomePage extends WebBasePage {
 
                     //-- VERIFICAÇÕES DE PAGINA --//
     public HomePage verificaAcessoPaginaHome(){
-            String styleAtrribute = homeLink.getAttribute("style");
-            boolean selectedTrue = styleAtrribute.contains("color: orange;");
-            if (!selectedTrue){
-                throw new RuntimeException();
-            }
+        homeCarrocel.isDisplayed();
         return this;
     }
     public HomePage verificarSeEstaLogado(){
-            logoutLink.isDisplayed();
+            navBarLogoutLink.isDisplayed();
         return this;
     }
 
@@ -57,29 +50,29 @@ public class HomePage extends WebBasePage {
     public HomePage subscriptionEmail(String email){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0, 500)");
-        subscribeInputEmailHome.sendKeys(email);
+        homeInputSubcribe.sendKeys(email);
         return this;
     }
     
 
                             //-- CLICKS --//
     public LoginPage clickLinkLogout(){
-        logoutLink.click();
+        navBarLogoutLink.click();
         return new LoginPage(driver);
     }
     public HomePage clickBtnSubscribe(){
-        subscribeBtn.click();
+        homeBtnSubscribe.click();
         return this;
     }
     public ContaExcluidaPage clickLinkDeleteAcc(){
-        deleteAccLink.click();
+        navBarDeleteAccLink.click();
         return new ContaExcluidaPage(driver);
     }
 
 
                     //-- CAPTURA DE MENSSAGENS --//
     public String getSubscribeSucecssMessage(){
-        return subscribeSucessMessage.getText();
+        return homeSubscribeSucessMessage.getText();
     }
 
 

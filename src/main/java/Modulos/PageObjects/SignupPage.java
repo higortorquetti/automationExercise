@@ -16,37 +16,37 @@ public class SignupPage {
     private WebDriver driver;
     // Identificação dos elementos com FindBy
     @FindBy (css = "h2[class=\"title text-center\"] b")
-    private WebElement textSignupForm;
+    private WebElement signupTextForm;
     @FindBy (css = "input[type=\"radio\"][value=\"Mr\"]")
-    private WebElement radioBtnMr;
+    private WebElement signupRadioBtnMr;
     @FindBy (css = "input[type=\"password\"][id=\"password\"]")
-    private WebElement inputPassword;
+    private WebElement singupInputPassword;
     @FindBy (css = "select[data-qa=\"days\"]")
-    private WebElement dayDropdown;
+    private WebElement singupDayDropdown;
     @FindBy (css = "select[data-qa=\"months\"]")
-    private WebElement monthDropdown;
+    private WebElement singupMonthDropdown;
     @FindBy (css = "select[data-qa=\"years\"]")
-    private WebElement yearDropdown;
+    private WebElement singupYearDropdown;
     @FindBy (css = "input[type=\"checkbox\"][id=\"newsletter\"]")
-    private WebElement checkBoxNewsLetter;
+    private WebElement signupCheckBoxNewsLetter;
     @FindBy (css = "input[type=\"text\"][id=\"first_name\"]")
-    private WebElement inputFirstName;
+    private WebElement singupInputFirstName;
     @FindBy (css = "input[type=\"text\"][id=\"last_name\"]")
-    private WebElement inputLastName;
+    private WebElement singupInputLastName;
     @FindBy (css = "input[type=\"text\"][id=\"address1\"]")
-    private WebElement inputAdress;
+    private WebElement singupInputAdress;
     @FindBy (css = "select[data-qa=\"country\"]")
-    private WebElement countryDropDown;
+    private WebElement singupCountryDropDown;
     @FindBy (css = "input[type=\"text\"][id=\"state\"]")
-    private WebElement inputState;
+    private WebElement singupInputState;
     @FindBy (css = "input[type=\"text\"][id=\"city\"]")
-    private WebElement inputCity;
+    private WebElement singupInputCity;
     @FindBy (css = "input[type=\"text\"][id=\"zipcode\"]")
-    private WebElement inputZipCode;
+    private WebElement singupInputZipCode;
     @FindBy (css = "input[type=\"text\"][id=\"mobile_number\"]")
-    private WebElement inputCel;
+    private WebElement signupInputCel;
     @FindBy (css = "button[type=\"submit\"]")
-    private WebElement BtnCreateAcc;
+    private WebElement singupBtnCreateAcc;
 
 
 
@@ -54,7 +54,7 @@ public class SignupPage {
         PageFactory.initElements(driver, this);
     }
     public SignupPage verificaAcessoPaginaSignup() {
-           textSignupForm.isDisplayed();
+           signupTextForm.isDisplayed();
         return this;
     }
 
@@ -77,38 +77,38 @@ public class SignupPage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-        radioBtnMr.click();
-        inputPassword.sendKeys(password);
+        signupRadioBtnMr.click();
+        singupInputPassword.sendKeys(password);
         js.executeScript("window.scrollBy(0, 500);");
 
-        dayDropdown.click();
-        dayDropdown.findElement(By.cssSelector("option[value=\"" + dia + "\"]")).click();
-        monthDropdown.click();
-        monthDropdown.findElement(By.cssSelector("option[value=\"" + mes + "\"]")).click();
-        yearDropdown.click();
-        yearDropdown.findElement(By.cssSelector("option[value=\"" + ano + "\"]")).click();
+        singupDayDropdown.click();
+        singupDayDropdown.findElement(By.cssSelector("option[value=\"" + dia + "\"]")).click();
+        singupMonthDropdown.click();
+        singupMonthDropdown.findElement(By.cssSelector("option[value=\"" + mes + "\"]")).click();
+        singupYearDropdown.click();
+        singupYearDropdown.findElement(By.cssSelector("option[value=\"" + ano + "\"]")).click();
 
-        wait.until(ExpectedConditions.elementToBeClickable(checkBoxNewsLetter));
-        checkBoxNewsLetter.click();
-        inputFirstName.sendKeys(firstName);
-        inputLastName.sendKeys(lastName);
-        inputAdress.sendKeys(endereco);
-        js.executeScript("arguments[0].scrollIntoView(true);", countryDropDown);
-        countryDropDown.click();
-        countryDropDown.findElement(By.cssSelector("option[value=\"" + pais + "\"]")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(signupCheckBoxNewsLetter));
+        signupCheckBoxNewsLetter.click();
+        singupInputFirstName.sendKeys(firstName);
+        singupInputLastName.sendKeys(lastName);
+        singupInputAdress.sendKeys(endereco);
+        js.executeScript("arguments[0].scrollIntoView(true);", singupCountryDropDown);
+        singupCountryDropDown.click();
+        singupCountryDropDown.findElement(By.cssSelector("option[value=\"" + pais + "\"]")).click();
         js.executeScript("window.scrollBy(0, 500);");
-        inputState.sendKeys(estado);
-        inputCity.sendKeys(cidade);
-        inputZipCode.sendKeys(cep);
-        inputCel.sendKeys(celular);
+        singupInputState.sendKeys(estado);
+        singupInputCity.sendKeys(cidade);
+        singupInputZipCode.sendKeys(cep);
+        signupInputCel.sendKeys(celular);
         return this;
     }
 
                     //-- CLICKS EM BOTÕES --//
     public ContaCriadaPage clickBtnSignup(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", BtnCreateAcc);
-        BtnCreateAcc.click();
+        js.executeScript("arguments[0].scrollIntoView(true);", singupBtnCreateAcc);
+        singupBtnCreateAcc.click();
         return new ContaCriadaPage(driver);
     }
 }

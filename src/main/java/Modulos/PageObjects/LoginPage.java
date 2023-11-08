@@ -13,21 +13,21 @@ import java.time.Duration;
 public class LoginPage extends WebBasePage{
     private WebDriver driver;
     @FindBy (css = "input[type=\"email\"][data-qa=\"login-email\"]")
-    private WebElement InputEmailLogin;
+    private WebElement loginInputEmail;
     @FindBy (css = "input[type=\"password\"][data-qa=\"login-password\"]")
-    private WebElement InputPasswordLogin;
+    private WebElement loginInputPassword;
     @FindBy (css = "button[type=\"submit\"][data-qa=\"login-button\"]")
-    private WebElement BtnLogin;
+    private WebElement longinBtn;
     @FindBy (css = "input[type=\"text\"][data-qa=\"signup-name\"]")
-    private WebElement InputNomeSignup;
+    private WebElement signupInputName;
     @FindBy (css = "input[type=\"email\"][data-qa=\"signup-email\"]")
-    private WebElement InputEmailSignup;
+    private WebElement signupInputEmail;
     @FindBy (css = "button[type=\"submit\"][data-qa=\"signup-button\"]")
-    private WebElement BtnSigup;
+    private WebElement signupBtn;
     @FindBy (css = "div[class=\"signup-form\"] h2")
-    private WebElement textLoginPage;
+    private WebElement loginText;
     @FindBy (css = "p[style=\"color: red;\"]")
-    private WebElement errorMessageLogin;
+    private WebElement loginErrorMessage;
     public LoginPage(WebDriver driver){
         super(driver);
         this.driver = driver;
@@ -36,31 +36,31 @@ public class LoginPage extends WebBasePage{
 
     //-- VERIFICAÇÕES DE PAGINA --//
     public LoginPage verificarAcessoLoginPage(){
-            textLoginPage.isDisplayed();
+            loginText.isDisplayed();
         return this;
     }
 
 
 
     //-- INSERÇÃO DE DADOS --//
-    public LoginPage setInputEmailLogin(String email){
-        InputEmailLogin.clear();
-        InputEmailLogin.sendKeys(email);
+    public LoginPage setLoginInputEmail(String email){
+        loginInputEmail.clear();
+        loginInputEmail.sendKeys(email);
 
         return this;
     }
-    public LoginPage setInputPasswordLogin(String password) {
-        InputPasswordLogin.clear();
-        InputPasswordLogin.sendKeys(password);
+    public LoginPage setLoginInputPassword(String password) {
+        loginInputPassword.clear();
+        loginInputPassword.sendKeys(password);
 
         return this;
     }
-    public LoginPage setInputNomeSignup(String nome){
-        InputNomeSignup.sendKeys(nome);
+    public LoginPage setSignupInputName(String nome){
+        signupInputName.sendKeys(nome);
         return this;
     }
-    public LoginPage setInputEmailSignup(String email){
-        InputEmailSignup.sendKeys(email);
+    public LoginPage setSignupInputEmail(String email){
+        signupInputEmail.sendKeys(email);
         return this;
     }
 
@@ -69,20 +69,20 @@ public class LoginPage extends WebBasePage{
     public SignupPage clickBtnSignup() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0, 500);");
-        BtnSigup.click();
+        signupBtn.click();
         return new SignupPage(driver);
 
     }
     public HomePage clickBtnLogin() {
-        BtnLogin.click();
+        longinBtn.click();
         return new HomePage(driver);
     }
     public LoginPage clickBtnLoginInvalido(){
-        BtnLogin.click();
+        longinBtn.click();
         return this;
     }
     public LoginPage clickBtnSignupInvalido(){
-        BtnSigup.click();
+        signupBtn.click();
         return this;
     }
 
@@ -90,12 +90,12 @@ public class LoginPage extends WebBasePage{
     //-- CAPTURA DE MENSSAGENS --//
     public String getEmailErrorMessageLogin() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        return errorMessageLogin.getText();
+        return loginErrorMessage.getText();
 
     }
     public String getEmailErrorMessageSingup() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.visibilityOf(errorMessageLogin));
-        return errorMessageLogin.getText();
+        wait.until(ExpectedConditions.visibilityOf(loginErrorMessage));
+        return loginErrorMessage.getText();
     }
 }
