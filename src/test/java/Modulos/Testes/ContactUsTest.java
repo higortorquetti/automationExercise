@@ -13,7 +13,7 @@ import java.time.Duration;
 import static Modulos.util.Constants.*;
 
 //S2: Contact Us
-@DisplayName("Test contact US")
+@DisplayName("Contact US Test")
 public class ContactUsTest {
 
     private WebDriver driver;

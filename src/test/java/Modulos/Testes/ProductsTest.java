@@ -10,7 +10,7 @@ import java.time.Duration;
 import static Modulos.util.Constants.*;
 
 //S3: Product
-@DisplayName("Todos Produtos Test")
+@DisplayName("Product Test")
 public class ProductsTest {
 
     private WebDriver driver;

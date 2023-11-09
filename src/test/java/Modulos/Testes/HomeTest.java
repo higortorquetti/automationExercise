@@ -8,7 +8,7 @@ import java.time.Duration;
 import static Modulos.util.Constants.*;
 
 //S4
-@DisplayName("Testes da pagina Home")
+@DisplayName("Home Test")
 public class HomeTest {
 
     private WebDriver driver;

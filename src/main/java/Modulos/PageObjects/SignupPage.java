@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class SignupPage {
+public class SignupPage extends WebBasePage{
     
     private WebDriver driver;
     // Identificação dos elementos com FindBy
@@ -50,8 +50,9 @@ public class SignupPage {
 
 
 
-    public SignupPage(WebDriver driver){this.driver = driver;
-        PageFactory.initElements(driver, this);
+    public SignupPage(WebDriver driver){
+        super(driver);
+        this.driver = driver;
     }
     public SignupPage verificaAcessoPaginaSignup() {
            signupTextForm.isDisplayed();
@@ -104,7 +105,7 @@ public class SignupPage {
         return this;
     }
 
-                    //-- CLICKS EM BOTÕES --//
+                    //-- CLICKS --//
     public ContaCriadaPage clickBtnSignup(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", singupBtnCreateAcc);

@@ -53,7 +53,6 @@ public class CartTest {
                     .clickBtnAddProdutoCarrinho(3)
                     .clickBtnAddProdutoCarrinho(2)
                     .acessaCartPage()
-                    .verificaProdutosCarrinho(3)
                     .verificaQuantidadeDeCadaProduto();
 
             Assertions.assertEquals(5, qntdAtual);

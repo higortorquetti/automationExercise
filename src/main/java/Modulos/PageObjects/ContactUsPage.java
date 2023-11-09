@@ -57,7 +57,7 @@ public class ContactUsPage extends WebBasePage {
     }
 
 
-                    //-- CLICKS EM BOTÕES --//
+                    //-- CLICKS --//
     public ContactUsPage clickBtnSubmitContacUs(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0, 500);");
